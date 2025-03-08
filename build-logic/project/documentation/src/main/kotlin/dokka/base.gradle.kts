@@ -1,0 +1,42 @@
+/*
+ * SPDX-FileCopyrightText: 2024-2025 Alexey Illarionov and the cassettes-kmp project contributors
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package at.released.cassettes.gradle.documentation.dokka
+
+/*
+ * Base configuration of Dokka
+ */
+plugins {
+    id("org.jetbrains.dokka")
+}
+
+private val htmlResourcesRoot = layout.settingsDirectory.dir("doc/aggregate-documentation")
+
+dokka {
+    dokkaPublications.configureEach {
+        suppressObviousFunctions.set(true)
+        suppressInheritedMembers.set(true)
+    }
+
+    dokkaSourceSets.configureEach {
+        includes.from(
+            "MODULE.md",
+        )
+        sourceLink {
+            localDirectory.set(project.layout.projectDirectory)
+            val remoteUrlSubpath = project.path.replace(':', '/')
+            remoteUrl("https://github.com/illarionov/cassettes-kmp/tree/main$remoteUrlSubpath")
+        }
+    }
+
+    pluginsConfiguration.html {
+        homepageLink.set("https://cassettes.released.at")
+        footerMessage.set("Copyright 2024-2025, Alexey Illarionov and the cassettes-kmp project contributors")
+        customStyleSheets.from(
+            htmlResourcesRoot.file("styles/font-jb-sans-auto.css"),
+            htmlResourcesRoot.file("styles/cassettes.css"),
+        )
+    }
+}

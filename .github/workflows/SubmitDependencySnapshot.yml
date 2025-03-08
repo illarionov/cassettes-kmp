@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2024-2025 Alexey Illarionov and the cassettes-kmp project contributors
+# SPDX-License-Identifier: Apache-2.0
+
+name: submit-dependency-snapshot
+
+on:
+  workflow_run:
+    workflows: ['build']
+    types: [completed]
+
+permissions:
+  contents: write
+
+jobs:
+  submit-snapshots:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Retrieve dependency graph artifact and submit
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-encryption-key: ${{ secrets.GRADLEENCRYPTIONKEY }}
+          dependency-graph: download-and-submit

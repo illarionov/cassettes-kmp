@@ -1,0 +1,44 @@
+/*
+ * SPDX-FileCopyrightText: 2024-2025 Alexey Illarionov and the cassettes-kmp project contributors
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package at.released.cassettes.gradle.lint
+
+import org.gradle.api.Project
+import org.gradle.api.file.Directory
+import org.gradle.api.file.FileTree
+import org.gradle.api.tasks.util.PatternFilterable
+
+internal val Project.configRootDir: Directory
+    get() {
+        return layout.settingsDirectory.dir("config")
+    }
+
+internal val Project.lintedFileTree: FileTree
+    get() = layout.settingsDirectory.asFileTree.matching {
+        excludeNonLintedDirectories()
+    }
+
+internal fun PatternFilterable.excludeNonLintedDirectories() {
+    exclude {
+        it.isDirectory && it.name in excludedDirectories
+    }
+    exclude {
+        it.isDirectory && it.relativePath.startsWith("config/copyright")
+    }
+    exclude {
+        it.isDirectory && it.relativePath.startsWith("test-wasi-testsuite/wasi-testsuite")
+    }
+    exclude("**/api/**/*.api")
+}
+
+private val excludedDirectories = setOf(
+    ".git",
+    ".gradle",
+    ".idea",
+    "build",
+    "generated",
+    "node_modules",
+    "out",
+)

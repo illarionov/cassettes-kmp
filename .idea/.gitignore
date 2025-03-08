@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: 2024-2025 Alexey Illarionov and the at-released-cassetes project contributors
+# SPDX-License-Identifier: Apache-2.0
+
+# Default ignored files
+/*
+!/.gitignore
+!/IntelliLang.xml
+!/codeInsightSettings.xml
+!/copyright
+!/detekt.xml
+!/dictionaries
+!/jsonSchemas.xml

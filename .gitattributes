@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: 2024-2025 Alexey Illarionov and the cassettes-kmp project contributors
+# SPDX-License-Identifier: Apache-2.0
+
+#
+# https://help.github.com/articles/dealing-with-line-endings/
+#
+# These are explicitly windows files and should use crlf
+*.bat           text eol=crlf
+gradle/verification-metadata.xml    text linguist-vendored
