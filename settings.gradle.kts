@@ -37,3 +37,5 @@ rootProject.name = "cassettes-kmp"
  include("aggregate-documentation")
 include("aggregate-distribution")
 include("doc:aggregate-documentation")
+include("cassettes-common-xdg")
+// include("cassettes-playhead")
