@@ -20,14 +20,12 @@ public class LinuxAssetManager(
     private val xdgBaseDirs: List<Path> = XdgBaseDirectory.getBaseDataDirectories(),
     private val fileSystem: FileSystem = SystemFileSystem,
 ) : AssetManager {
-    override fun getStorageCandidates(url: AssetUrl): List<AssetStorage.Factory> {
+    override fun getStorageCandidates(url: AssetUrl): List<AssetStorage> {
         return xdgBaseDirs.map { xdgBaseDir ->
             val candidate = Path(xdgBaseDir, appName, url.url)
-            AssetStorage.Factory {
-                object : AssetStorage {
-                    override val path: String = candidate.toString()
-                    override fun open(): Source = fileSystem.source(candidate).buffered()
-                }
+            object : AssetStorage {
+                override val path: String = candidate.toString()
+                override fun open(): Source = fileSystem.source(candidate).buffered()
             }
         }
     }

@@ -15,15 +15,11 @@ public class AndroidAssetsAssetManager(
 ) : at.released.cassettes.playhead.AssetManager {
     private val jvmSourceReader = JvmResourcesAssetManager()
 
-    override fun getStorageCandidates(url: AssetUrl): List<AssetStorage.Factory> {
+    override fun getStorageCandidates(url: AssetUrl): List<AssetStorage> {
         return if (!url.url.startsWith(ANDROID_ASSET_URL_PREFIX)) {
             jvmSourceReader.getStorageCandidates(url)
         } else {
-            listOf(
-                AssetStorage.Factory {
-                    AndroidAssetsBinarySource(url, assertManager)
-                },
-            )
+            listOf(AndroidAssetsBinarySource(url, assertManager))
         }
     }
 

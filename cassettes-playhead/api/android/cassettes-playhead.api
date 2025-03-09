@@ -22,10 +22,6 @@ public abstract interface class at/released/cassettes/playhead/AssetStorage {
 	public abstract fun open ()Lkotlinx/io/RawSource;
 }
 
-public abstract interface class at/released/cassettes/playhead/AssetStorage$Factory {
-	public abstract fun invoke ()Lat/released/cassettes/playhead/AssetStorage;
-}
-
 public final class at/released/cassettes/playhead/JvmResourcesAssetManager : at/released/cassettes/playhead/AssetManager {
 	public fun <init> ()V
 	public fun getStorageCandidates (Lat/released/cassettes/base/AssetUrl;)Ljava/util/List;
