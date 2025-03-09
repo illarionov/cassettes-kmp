@@ -1,0 +1,38 @@
+public abstract interface class at/released/cassettes/playhead/AssetManager {
+	public static final field Companion Lat/released/cassettes/playhead/AssetManager$Companion;
+	public abstract fun getStorageCandidates (Lat/released/cassettes/base/AssetUrl;)Ljava/util/List;
+}
+
+public final class at/released/cassettes/playhead/AssetManager$Companion : at/released/cassettes/playhead/AssetManager {
+	public fun getStorageCandidates (Lat/released/cassettes/base/AssetUrl;)Ljava/util/List;
+}
+
+public final class at/released/cassettes/playhead/AssetManagerExtKt {
+	public static final fun readBytesOrThrow (Lat/released/cassettes/playhead/AssetManager;Lat/released/cassettes/base/AssetUrl;)[B
+	public static final fun readOrThrow (Lat/released/cassettes/playhead/AssetManager;Lat/released/cassettes/base/AssetUrl;Lkotlin/jvm/functions/Function2;)Ljava/lang/Object;
+}
+
+public abstract interface class at/released/cassettes/playhead/AssetStorage {
+	public abstract fun getPath ()Ljava/lang/String;
+	public abstract fun open ()Lkotlinx/io/RawSource;
+}
+
+public abstract interface class at/released/cassettes/playhead/AssetStorage$Factory {
+	public abstract fun invoke ()Lat/released/cassettes/playhead/AssetStorage;
+}
+
+public final class at/released/cassettes/playhead/JvmResourcesAssetManager : at/released/cassettes/playhead/AssetManager {
+	public fun <init> ()V
+	public fun getStorageCandidates (Lat/released/cassettes/base/AssetUrl;)Ljava/util/List;
+}
+
+public class at/released/cassettes/playhead/PlayheadException : java/lang/RuntimeException {
+	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class at/released/cassettes/playhead/PlayheadIoException : at/released/cassettes/playhead/PlayheadException {
+	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+

@@ -1,0 +1,9 @@
+public abstract interface class at/released/cassettes/common/xdg/XdgBaseDirectory {
+	public static final field Companion Lat/released/cassettes/common/xdg/XdgBaseDirectory$Companion;
+	public abstract fun getBaseDataDirectories ()Ljava/util/List;
+}
+
+public final class at/released/cassettes/common/xdg/XdgBaseDirectory$Companion : at/released/cassettes/common/xdg/XdgBaseDirectory {
+	public fun getBaseDataDirectories ()Ljava/util/List;
+}
+

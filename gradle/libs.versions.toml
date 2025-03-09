@@ -16,9 +16,12 @@ kotlinx-binary-compatibility-validator = "0.17.0"
 kotlinx-io ="0.7.0"
 spotless = "7.0.2"
 nodejs = "23.8.0"
+tempfolder = "0.1"
 
 [libraries]
 assertk = { group = "com.willowtreeapps.assertk", name = "assertk", version.ref = "assertk" }
+kotlinx-io = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-core", version.ref = "kotlinx-io" }
+tempfolder = { group = "at.released.tempfolder", name = "tempfolder-sync", version.ref = "tempfolder" }
 
 # Dependencies of the included build-logic
 agp-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
