@@ -3,12 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package at.released.cassettes.gradle.multiplatform
+package at.released.cassettes.gradle.multiplatform.publish
 
-import at.released.cassettes.gradle.multiplatform.publish.createCassettesVersionsExtension
-import com.vanniktech.maven.publish.JavadocJar
-import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.SonatypeHost
+import org.gradle.api.credentials.AwsCredentials
+import org.gradle.api.tasks.bundling.AbstractArchiveTask
+import org.gradle.kotlin.dsl.credentials
+import org.gradle.kotlin.dsl.withType
 
 /*
  * Convention plugin with publishing defaults
@@ -16,7 +17,6 @@ import com.vanniktech.maven.publish.SonatypeHost
 plugins {
     id("at.released.cassettes.gradle.documentation.dokka.subproject")
     id("at.released.cassettes.gradle.multiplatform.distribution.subproject")
-    id("org.jetbrains.kotlin.multiplatform")
     id("com.vanniktech.maven.publish.base")
 }
 
@@ -43,12 +43,6 @@ mavenPublishing {
     }
 
     signAllPublications()
-
-    configure(
-        KotlinMultiplatform(
-            javadocJar = JavadocJar.Dokka("dokkaGeneratePublicationHtml"),
-        ),
-    )
 
     pom {
         name.set(project.name)

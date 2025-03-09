@@ -34,6 +34,8 @@ tasks.register<Sync>("buildWebsite") {
 }
 
 dependencies {
+    dokka(projects.cassettesBase)
     dokka(projects.cassettesCommonXdg)
-    // dokka(projects.cassettesPlayhead)
+    dokka(projects.cassettesPlayhead)
+    dokka(projects.cassettesPlugin)
 }

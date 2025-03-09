@@ -8,7 +8,7 @@ The latest release is available on [Maven Central]. Add the dependency:
 
 ```kotlin
 dependencies {
-    implementation("at.released.cassettes:cassettes-sync:0.1")
+    implementation("at.released.cassettes:cassettes-playhead:0.1")
 }
 ```
 
@@ -20,7 +20,7 @@ pluginManagement {
         maven {
             url = uri("https://maven.pixnews.ru")
             mavenContent {
-                includeGroupAndSubgroups("at.released.builder.emscripten")
+                includeGroupAndSubgroups("at.released.cassettes")
             }
         }
     }

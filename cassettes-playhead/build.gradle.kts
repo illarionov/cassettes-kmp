@@ -6,18 +6,18 @@
 plugins {
     id("at.released.cassettes.gradle.multiplatform.android-library")
     id("at.released.cassettes.gradle.multiplatform.kotlin")
-    id("at.released.cassettes.gradle.multiplatform.publish")
+    id("at.released.cassettes.gradle.multiplatform.publish.multiplatform")
     id("org.jetbrains.kotlinx.binary-compatibility-validator")
 }
 
-group = "ru.pixnews.cassettes"
+group = "at.released.cassettes"
 version = cassettesVersions.getSubmoduleVersionProvider(
     propertiesFileKey = "cassettes_playhead_version",
     envVariableName = "CASSETTES_PLAYHEAD_VERSION",
 ).get()
 
 android {
-    namespace = "ru.pixnews.cassettes.playhead"
+    namespace = "at.released.cassettes.playhead"
 }
 
 kotlin {

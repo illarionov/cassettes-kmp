@@ -6,11 +6,11 @@
 
 plugins {
     id("at.released.cassettes.gradle.multiplatform.kotlin")
-    id("at.released.cassettes.gradle.multiplatform.publish")
+    id("at.released.cassettes.gradle.multiplatform.publish.multiplatform")
     id("org.jetbrains.kotlinx.binary-compatibility-validator")
 }
 
-group = "ru.pixnews.cassettes"
+group = "at.released.cassettes"
 version = cassettesVersions.getSubmoduleVersionProvider(
     propertiesFileKey = "cassettes_common_xdg_version",
     envVariableName = "CASSETTES_COMMON_XDG_VERSION",
