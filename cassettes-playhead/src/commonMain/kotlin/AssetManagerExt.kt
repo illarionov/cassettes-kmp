@@ -14,10 +14,9 @@ public fun <R : Any> AssetManager.readOrThrow(
     url: AssetUrl,
     transform: (RawSource, String) -> Result<R>,
 ): R {
-    val candidates: List<AssetStorage.Factory> = getStorageCandidates(url)
+    val candidates: List<AssetStorage> = getStorageCandidates(url)
     val failedPaths: MutableList<Pair<String, Throwable>> = mutableListOf()
-    for (sourceFactory in candidates) {
-        val assetStorage: AssetStorage = sourceFactory()
+    for (assetStorage in candidates) {
         val result: Result<R> = tryReadCandidate(assetStorage, transform)
         result.onSuccess {
             return it

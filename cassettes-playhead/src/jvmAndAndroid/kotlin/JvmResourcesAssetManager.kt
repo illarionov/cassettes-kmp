@@ -11,15 +11,11 @@ import kotlinx.io.asSource
 import java.net.URI
 
 public class JvmResourcesAssetManager : AssetManager {
-    override fun getStorageCandidates(url: AssetUrl): List<AssetStorage.Factory> {
+    override fun getStorageCandidates(url: AssetUrl): List<AssetStorage> {
         return listOf(
-            AssetStorage.Factory {
-                object : AssetStorage {
-                    override val path: String = url.toString()
-                    override fun open(): RawSource {
-                        return URI(url.url).toURL().openStream().asSource()
-                    }
-                }
+            object : AssetStorage {
+                override val path: String = url.toString()
+                override fun open(): RawSource = URI(url.url).toURL().openStream().asSource()
             },
         )
     }

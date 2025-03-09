@@ -10,7 +10,7 @@ import at.released.cassettes.base.AssetUrl
 internal expect fun getDefaultAssetManager(): AssetManager
 
 public fun interface AssetManager {
-    public fun getStorageCandidates(url: AssetUrl): List<AssetStorage.Factory>
+    public fun getStorageCandidates(url: AssetUrl): List<AssetStorage>
 
     public companion object : AssetManager by getDefaultAssetManager()
 }

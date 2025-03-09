@@ -24,9 +24,7 @@ public class AppleNsBundleAssetManager(
     private val fileSystem: FileSystem = SystemFileSystem,
     private val wshohResourcesRoot: String = "wsoh-resources",
 ) : AssetManager {
-    override fun getStorageCandidates(url: AssetUrl): List<AssetStorage.Factory> = listOf(
-        AssetStorage.Factory { NsBundleBinarySource(url) },
-    )
+    override fun getStorageCandidates(url: AssetUrl): List<AssetStorage> = listOf(NsBundleBinarySource(url))
 
     private inner class NsBundleBinarySource(
         private val url: AssetUrl,

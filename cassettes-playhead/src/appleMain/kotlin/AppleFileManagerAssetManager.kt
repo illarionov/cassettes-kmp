@@ -20,7 +20,7 @@ public class AppleFileManagerAssetManager(
     private val fileSystem: FileSystem = SystemFileSystem,
     private val basePath: String = NSFileManager.defaultManager().currentDirectoryPath,
 ) : AssetManager {
-    override fun getStorageCandidates(url: AssetUrl): List<AssetStorage.Factory> {
+    override fun getStorageCandidates(url: AssetUrl): List<AssetStorage> {
         val subpath = url.url
         return listOf(
             "$basePath/build/processedResources/macosX64/main/$subpath",
@@ -28,9 +28,7 @@ public class AppleFileManagerAssetManager(
             "$basePath/src/macosTest/$subpath",
             "$basePath/src/commonMain/$subpath",
             "$basePath/src/commonTest/$subpath",
-        ).map { path ->
-            AssetStorage.Factory { AppleWasmBinarySource(path, fileSystem) }
-        }
+        ).map { path -> AppleWasmBinarySource(path, fileSystem) }
     }
 
     private class AppleWasmBinarySource(

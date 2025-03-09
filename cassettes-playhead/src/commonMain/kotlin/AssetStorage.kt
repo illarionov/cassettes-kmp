@@ -11,8 +11,4 @@ public interface AssetStorage {
     public val path: String
 
     public fun open(): RawSource
-
-    public fun interface Factory {
-        public operator fun invoke(): AssetStorage
-    }
 }

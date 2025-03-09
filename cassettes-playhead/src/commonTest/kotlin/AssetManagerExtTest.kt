@@ -8,7 +8,6 @@ package at.released.cassettes.playhead
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import at.released.cassettes.base.AssetUrl
-import at.released.cassettes.playhead.AssetStorage.Factory
 import kotlinx.io.Buffer
 import kotlinx.io.RawSource
 import kotlinx.io.files.FileNotFoundException
@@ -21,8 +20,8 @@ class AssetManagerExtTest {
     fun readOrThrow_should_read_source() {
         val am = AssetManager { _: AssetUrl ->
             listOf(
-                Factory { createFailureWasmBinarySource("/opt/path.txt") },
-                Factory { createSuccessWasmBinarySource("/usr/data/path.txt") },
+                createFailureWasmBinarySource("/opt/path.txt"),
+                createSuccessWasmBinarySource("/usr/data/path.txt"),
             )
         }
 
@@ -34,8 +33,8 @@ class AssetManagerExtTest {
     fun readOrThrow_should_throw_exception_on_failure() {
         val am = AssetManager { _: AssetUrl ->
             listOf(
-                Factory { createFailureWasmBinarySource("/opt/path.txt") },
-                Factory { createFailureWasmBinarySource("/usr/data/path.txt") },
+                createFailureWasmBinarySource("/opt/path.txt"),
+                createFailureWasmBinarySource("/usr/data/path.txt"),
             )
         }
 
@@ -54,34 +53,14 @@ class AssetManagerExtTest {
     }
 
     @Test
-    fun readOrThrow_should_throw_if_factory_throws_exception() {
-        class UnexpectedException : RuntimeException()
-
-        val am = AssetManager { _: AssetUrl ->
-            listOf(
-                Factory { throw UnexpectedException() },
-                Factory { createSuccessWasmBinarySource("/usr/data/path.txt") },
-            )
-        }
-
-        assertFailsWith<UnexpectedException> {
-            am.readBytesOrThrow(AssetUrl("path.txt"))
-        }
-    }
-
-    @Test
     fun readOrThrow_should_not_throw_if_create_source_throws_exception() {
         val am = AssetManager { _: AssetUrl ->
             listOf(
-                Factory {
-                    object : AssetStorage {
-                        override val path: String = "nonexistent"
-                        override fun open(): RawSource = throw FileNotFoundException("file not found")
-                    }
+                object : AssetStorage {
+                    override val path: String = "nonexistent"
+                    override fun open(): RawSource = throw FileNotFoundException("file not found")
                 },
-                Factory {
-                    createSuccessWasmBinarySource("/usr/data/path.txt")
-                },
+                createSuccessWasmBinarySource("/usr/data/path.txt"),
             )
         }
 
@@ -95,9 +74,7 @@ class AssetManagerExtTest {
         class UnexpectedException : RuntimeException()
 
         val am = AssetManager { _: AssetUrl ->
-            listOf(
-                Factory { createSuccessWasmBinarySource("/usr/data/path.txt") },
-            )
+            listOf(createSuccessWasmBinarySource("/usr/data/path.txt"))
         }
 
         assertFailsWith<UnexpectedException> {
