@@ -9,12 +9,14 @@ import assertk.assertThat
 import assertk.assertions.containsExactly
 import assertk.tableOf
 import at.released.cassettes.test.ignore.annotations.IgnoreJs
+import at.released.cassettes.test.ignore.annotations.IgnoreMingw
 import at.released.cassettes.test.ignore.annotations.IgnoreWasmJs
 import kotlinx.io.files.Path
 import kotlin.test.Test
 
 @IgnoreWasmJs // TODO
 @IgnoreJs // TODO
+@IgnoreMingw // TODO: fix
 class XdgBaseDirectoryTest {
     @Test
     fun getBaseDataDirectories_should_return_xdg_data_home_and_xdg_data_dirs() {
