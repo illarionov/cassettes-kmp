@@ -5,18 +5,17 @@
 
 package at.released.cassettes.common.xdg
 
+import assertk.Assert
 import assertk.assertThat
 import assertk.assertions.containsExactly
 import assertk.tableOf
 import at.released.cassettes.test.ignore.annotations.IgnoreJs
-import at.released.cassettes.test.ignore.annotations.IgnoreMingw
 import at.released.cassettes.test.ignore.annotations.IgnoreWasmJs
 import kotlinx.io.files.Path
 import kotlin.test.Test
 
 @IgnoreWasmJs // TODO
 @IgnoreJs // TODO
-@IgnoreMingw // TODO: fix
 class XdgBaseDirectoryTest {
     @Test
     fun getBaseDataDirectories_should_return_xdg_data_home_and_xdg_data_dirs() {
@@ -28,7 +27,7 @@ class XdgBaseDirectoryTest {
         val xdgBaseDirectory: XdgBaseDirectory = DefaultXdgBaseDirectory(envReader)
         val dataDirs = xdgBaseDirectory.getBaseDataDirectories().map(Path::toString)
 
-        assertThat(dataDirs).containsExactly(
+        assertThat(dataDirs).containsExactlyWithInvariantPath(
             "/home/user/data",
             "/usr/share/gnome",
             "/usr/local/share",
@@ -47,7 +46,7 @@ class XdgBaseDirectoryTest {
         val xdgBaseDirectory: XdgBaseDirectory = DefaultXdgBaseDirectory(envReader)
         val dataDirs = xdgBaseDirectory.getBaseDataDirectories().map(Path::toString)
 
-        assertThat(dataDirs).containsExactly(
+        assertThat(dataDirs).containsExactlyWithInvariantPath(
             "/path0",
             "/path10",
             "/path9",
@@ -70,7 +69,7 @@ class XdgBaseDirectoryTest {
                 val xdgBaseDirectory: XdgBaseDirectory = DefaultXdgBaseDirectory(envReader)
                 val dataDirs = xdgBaseDirectory.getBaseDataDirectories().map(Path::toString)
 
-                assertThat(dataDirs).containsExactly("/home/user/.local/share", "/opt/data")
+                assertThat(dataDirs).containsExactlyWithInvariantPath("/home/user/.local/share", "/opt/data")
             }
     }
 
@@ -90,7 +89,7 @@ class XdgBaseDirectoryTest {
                 val xdgBaseDirectory: XdgBaseDirectory = DefaultXdgBaseDirectory(envReader)
                 val dataDirs = xdgBaseDirectory.getBaseDataDirectories().map(Path::toString)
 
-                assertThat(dataDirs).containsExactly("/opt/data")
+                assertThat(dataDirs).containsExactlyWithInvariantPath("/opt/data")
             }
     }
 
@@ -107,7 +106,11 @@ class XdgBaseDirectoryTest {
                 val xdgBaseDirectory: XdgBaseDirectory = DefaultXdgBaseDirectory(envReader)
                 val dataDirs = xdgBaseDirectory.getBaseDataDirectories().map(Path::toString)
 
-                assertThat(dataDirs).containsExactly("/home/user/data", "/usr/local/share", "/usr/share")
+                assertThat(dataDirs).containsExactlyWithInvariantPath(
+                    "/home/user/data",
+                    "/usr/local/share",
+                    "/usr/share",
+                )
             }
     }
 
@@ -126,7 +129,7 @@ class XdgBaseDirectoryTest {
                 val xdgBaseDirectory: XdgBaseDirectory = DefaultXdgBaseDirectory(envReader)
                 val dataDirs = xdgBaseDirectory.getBaseDataDirectories().map(Path::toString)
 
-                assertThat(dataDirs).containsExactly("/home/user/data")
+                assertThat(dataDirs).containsExactlyWithInvariantPath("/home/user/data")
             }
     }
 
@@ -142,7 +145,7 @@ class XdgBaseDirectoryTest {
         val xdgBaseDirectory: XdgBaseDirectory = DefaultXdgBaseDirectory(envReader)
         val dataDirs = xdgBaseDirectory.getBaseDataDirectories().map(Path::toString)
 
-        assertThat(dataDirs).containsExactly(
+        assertThat(dataDirs).containsExactlyWithInvariantPath(
             "/home/user/.local/share",
             "/opt/data",
         )
@@ -167,7 +170,7 @@ class XdgBaseDirectoryTest {
                 val xdgBaseDirectory: XdgBaseDirectory = DefaultXdgBaseDirectory(envReader)
                 val dataDirs = xdgBaseDirectory.getBaseDataDirectories().map(Path::toString)
 
-                assertThat(dataDirs).containsExactly(
+                assertThat(dataDirs).containsExactlyWithInvariantPath(
                     "/usr/home/user/.local/share",
                     "/opt/data",
                 )
@@ -186,7 +189,7 @@ class XdgBaseDirectoryTest {
         val xdgBaseDirectory: XdgBaseDirectory = DefaultXdgBaseDirectory(envReader)
         val dataDirs = xdgBaseDirectory.getBaseDataDirectories().map(Path::toString)
 
-        assertThat(dataDirs).containsExactly("/opt/data")
+        assertThat(dataDirs).containsExactlyWithInvariantPath("/opt/data")
     }
 
     private open class TestPlatformXdgEnvReader(
@@ -203,5 +206,13 @@ class XdgBaseDirectoryTest {
         }
 
         override fun getUserHomeDirectory(): String? = realUserHome
+    }
+
+    private companion object {
+        fun Assert<List<String>>.containsExactlyWithInvariantPath(vararg elements: String) {
+            return this
+                .transform { src -> src.map { it.replace('\\', '/') } }
+                .containsExactly(*elements)
+        }
     }
 }

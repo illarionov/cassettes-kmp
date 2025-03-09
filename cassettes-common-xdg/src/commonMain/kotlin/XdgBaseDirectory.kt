@@ -84,7 +84,7 @@ internal class DefaultXdgBaseDirectory(
 
             val path = Path(this) // XXX: no path validation
 
-            return if (path.isAbsolute || path.toString().startsWith("/")) {
+            return if (path.isAbsolute || this.startsWith("/")) {
                 XdgPathResult.Valid(path)
             } else {
                 XdgPathResult.NotValid
