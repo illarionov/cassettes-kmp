@@ -9,9 +9,14 @@ plugins {
     id("at.released.cassettes.gradle.lint.android-lint")
     id("at.released.cassettes.gradle.multiplatform.android-library")
     id("at.released.cassettes.gradle.multiplatform.kotlin")
+    id("at.released.cassettes.gradle.multiplatform.publish.multiplatform")
 }
 
 group = "at.released.cassettes"
+version = cassettesVersions.getSubmoduleVersionProvider(
+    propertiesFileKey = "cassettes_base_version",
+    envVariableName = "CASSETTES_BASE_VERSION",
+).get()
 
 android {
     namespace = "at.released.cassettes.base"
@@ -53,13 +58,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(kotlin("test"))
-        }
-        jvmMain.dependencies {
-            api(kotlin("test-junit"))
-        }
-        androidMain.dependencies {
-            api(kotlin("test-junit"))
+            implementation(libs.kotlin.stdlib)
         }
     }
 }
