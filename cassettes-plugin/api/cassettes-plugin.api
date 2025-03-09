@@ -1,0 +1,37 @@
+public final class at/released/cassettes/plugin/CassettesBasePlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public abstract class at/released/cassettes/plugin/CassettesExtension {
+	public final fun getFiles ()Lorg/gradle/api/file/ConfigurableFileCollection;
+	public final fun getPublishMethod ()Lorg/gradle/api/provider/Property;
+	public final fun getTargetPackage ()Lorg/gradle/api/provider/Property;
+}
+
+public abstract interface annotation class at/released/cassettes/plugin/InternalCassettesPluginApi : java/lang/annotation/Annotation {
+}
+
+public final class at/released/cassettes/plugin/PublishMethod : java/lang/Enum {
+	public static final field COMMON_MODULE Lat/released/cassettes/plugin/PublishMethod;
+	public static final field TARGETS Lat/released/cassettes/plugin/PublishMethod;
+	public static fun valueOf (Ljava/lang/String;)Lat/released/cassettes/plugin/PublishMethod;
+	public static fun values ()[Lat/released/cassettes/plugin/PublishMethod;
+}
+
+public final class at/released/cassettes/plugin/publish/KotlinTargetPublishExtKt {
+	public static final fun addVariantsFromConfigurationsToPublication (Lorg/jetbrains/kotlin/gradle/plugin/KotlinTarget;Lorg/gradle/api/artifacts/Configuration;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class at/released/cassettes/plugin/publish/PublishedAssetsConfigurator$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public final class at/released/cassettes/plugin/publish/RewrapPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+

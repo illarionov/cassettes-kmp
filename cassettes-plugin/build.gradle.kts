@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+@file:Suppress("UnstableApiUsage")
+
 import com.vanniktech.maven.publish.GradlePlugin
 import com.vanniktech.maven.publish.JavadocJar
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
@@ -10,10 +12,10 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
 
 plugins {
     `java-gradle-plugin`
-    `kotlin-dsl`
+    `kotlin-dsl-base`
     id("org.jetbrains.kotlinx.binary-compatibility-validator")
     id("at.released.cassettes.gradle.multiplatform.publish.base")
-    id("at.released.cassettes.gradle.multiplatform.test.jvm")
+    id("at.released.cassettes.gradle.multiplatform.test.gradleplugin")
 }
 
 group = "at.released.cassettes"
@@ -22,9 +24,22 @@ version = cassettesVersions.getSubmoduleVersionProvider(
     envVariableName = "CASSETTES_PLUGIN_VERSION",
 ).get()
 
+private val internalCassettesApiMarker = "at.released.cassettes.plugin.InternalCassettesPluginApi"
+
 gradlePlugin {
     website = "https://github.com/illarionov/cassettes-kmp"
     vcsUrl = "https://github.com/illarionov/cassettes-kmp"
+    plugins.create("cassettesBase") {
+        id = "at.released.cassettes.plugin.base"
+        implementationClass = "at.released.cassettes.plugin.CassettesBasePlugin"
+        displayName = "Base Cassettes Gradle Plugin"
+    }
+    plugins.create("rewrap") {
+        id = "at.released.cassettes.rewrap"
+        implementationClass = "at.released.cassettes.plugin.publish.RewrapPlugin"
+        displayName = "A plugin that converts Cassette-based assets into native resources for the target platform"
+        tags = listOf("kotlin", "multiplatform", "resources")
+    }
 }
 
 mavenPublishing {
@@ -45,7 +60,12 @@ kotlin {
         apiVersion = org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_6
         languageVersion = org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_6
         freeCompilerArgs.addAll("-Xjvm-default=all")
+        optIn = listOf(internalCassettesApiMarker)
     }
+}
+
+apiValidation {
+    nonPublicMarkers.add(internalCassettesApiMarker)
 }
 
 java {
@@ -53,9 +73,14 @@ java {
 }
 
 dependencies {
-    testImplementation(platform(libs.junit.bom))
+    implementation(libs.agp.plugin.api)
+    compileOnly(libs.kotlin.gradle.plugin)
+    testImplementation(libs.agp.plugin.api)
     testImplementation(libs.assertk)
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.junit.jupiter.params)
+    testImplementation(libs.kotlin.gradle.plugin)
+    testImplementation(libs.mockk)
+    testImplementation(platform(libs.junit.bom))
     testRuntimeOnly(libs.junit.platform.launcher)
 }

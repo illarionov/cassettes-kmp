@@ -28,6 +28,7 @@
          <trusted-key id="2DB4F1EF0FA761ECC4EA935C86FDC7E2A11262CB" group="commons-codec"/>
          <trusted-key id="475F3B8E59E6E63AA78067482C7B12F2A511E325" group="org.slf4j"/>
          <trusted-key id="4797B4F5DCC46CEA61059071A1AE06236CA2BA62" group="^com[.]diffplug($|([.].*))" regex="true"/>
+         <trusted-key id="59B06224FD8912E36603BE79FEFE78456EDDC34A" group="io.mockk"/>
          <trusted-key id="5F6C2148AD4911FE308110E5F0D0AE433308B042" group="io.gitlab.arturbosch.detekt"/>
          <trusted-key id="694621A7227D8D5289699830ABE9F3126BB741C1" group="^com[.]google($|([.].*))" regex="true"/>
          <trusted-key id="696B6199A2A9D8C29CE78CC0D041CAD2E452550F" group="com.google.protobuf"/>
@@ -52,6 +53,7 @@
             <trusting group="^androidx[.]test($|([.].*))" regex="true"/>
             <trusting group="^com[.]android($|([.].*))" regex="true"/>
          </trusted-key>
+         <trusted-key id="A7892505CF1A58076453E52D7999BEFBA1039E8B" group="net.bytebuddy"/>
          <trusted-key id="ADBC987D1A7B91DB6B0AAA81995EFBF4A3D20BEB" group="com.pinterest.ktlint"/>
          <trusted-key id="B02335AA54CCF21E52BBF9ABD9C565AA72BA2FDD" group="io.grpc"/>
          <trusted-key id="BDB5FA4FE719D787FB3D3197F6D4A1D411E9D1AE" group="com.google.guava"/>
@@ -63,6 +65,7 @@
          <trusted-key id="FF6E2C001948C5F2F38B0CC385911F425EC61B51">
             <trusting group="org.junit.jupiter"/>
             <trusting group="org.junit.platform"/>
+            <trusting group="org.opentest4j"/>
          </trusted-key>
       </trusted-keys>
    </configuration>
@@ -413,6 +416,11 @@
          </artifact>
          <artifact name="node-23.8.0-win-x64.zip">
             <sha256 value="9e03646224fcf44fa0b594df5d012da9cb5b137c52f36f33b11def3319cd132c" origin="https://nodejs.org/dist/v23.8.0/SHASUMS256.txt" reason="Artifact is not signed"/>
+         </artifact>
+      </component>
+      <component group="org.objenesis" name="objenesis" version="3.3">
+         <artifact name="objenesis-3.3.jar">
+            <pgp value="E85AED155021AF8A6C6B7A4A7C7D8456294423BA"/>
          </artifact>
       </component>
       <component group="org.opentest4j" name="opentest4j" version="1.3.0">

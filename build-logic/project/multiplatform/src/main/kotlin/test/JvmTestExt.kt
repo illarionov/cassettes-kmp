@@ -12,7 +12,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 fun Project.configureTestTaskDefaults(
     testTask: Test,
 ) = with(testTask) {
-    useJUnit()
+    useJUnitPlatform()
     maxHeapSize = "2G"
     jvmArgs = listOf("-XX:MaxMetaspaceSize=768M")
     testLogging {

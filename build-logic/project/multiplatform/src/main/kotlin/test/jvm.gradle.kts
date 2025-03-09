@@ -22,3 +22,7 @@ plugins.withId("org.jetbrains.kotlin.multiplatform") {
         }
     }
 }
+
+tasks.withType<Test> {
+    configureTestTaskDefaults(this)
+}

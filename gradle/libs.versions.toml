@@ -15,6 +15,7 @@ junit5 = "5.12.0"
 kotlin = "2.1.10"
 kotlinx-binary-compatibility-validator = "0.17.0"
 kotlinx-io ="0.7.0"
+mockk = "1.13.17"
 spotless = "7.0.2"
 nodejs = "23.8.0"
 tempfolder = "0.1"
@@ -27,6 +28,7 @@ junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform
 junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-params" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlinx-io = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-core", version.ref = "kotlinx-io" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 tempfolder = { group = "at.released.tempfolder", name = "tempfolder-sync", version.ref = "tempfolder" }
 
 # Dependencies of the included build-logic
