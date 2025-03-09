@@ -28,14 +28,13 @@ buildscript {
             "org.jetbrains.kotlinx.binary-compatibility-validator:" +
                     "org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin:0.17.0",
         )
-        classpath("org.jetbrains.kotlinx:atomicfu-gradle-plugin:0.27.0")
     }
 }
 
 rootProject.name = "cassettes-kmp"
 
- include("aggregate-documentation")
-include("aggregate-distribution")
-include("doc:aggregate-documentation")
 include("cassettes-common-xdg")
-// include("cassettes-playhead")
+include("doc:aggregate-documentation")
+include("test-ignore-annotations")
+include("cassettes-base")
+include("cassettes-playhead")

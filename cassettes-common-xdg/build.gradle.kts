@@ -44,6 +44,7 @@ kotlin {
             api(libs.kotlinx.io)
         }
         commonTest.dependencies {
+            implementation(projects.testIgnoreAnnotations)
             implementation(kotlin("test"))
             implementation(libs.assertk)
         }

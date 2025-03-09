@@ -16,6 +16,10 @@ version = cassettesVersions.getSubmoduleVersionProvider(
     envVariableName = "CASSETTES_PLAYHEAD_VERSION",
 ).get()
 
+android {
+    namespace = "ru.pixnews.cassettes.playhead"
+}
+
 kotlin {
     androidTarget()
     jvm()
@@ -42,15 +46,16 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            api(projects.cassettesBase)
             api(libs.kotlinx.io)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
             implementation(libs.assertk)
-            implementation(libs.tempfolder)             .
+            implementation(libs.tempfolder)
         }
         nativeMain.dependencies {
-            implementation(projects.commonXdg)
+            implementation(projects.cassettesCommonXdg)
         }
 
         val jvmAndAndroid by creating {
@@ -59,8 +64,4 @@ kotlin {
         androidMain.get().dependsOn(jvmAndAndroid)
         jvmMain.get().dependsOn(jvmAndAndroid)
     }
-}
-
-android {
-    namespace = "ru.pixnews.cassettes.playhead"
 }
