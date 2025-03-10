@@ -33,6 +33,7 @@ buildscript {
 
 rootProject.name = "cassettes-kmp"
 
+include("aggregate-distribution")
 include("cassettes-common-xdg")
 include("doc:aggregate-documentation")
 include("test-ignore-annotations")
