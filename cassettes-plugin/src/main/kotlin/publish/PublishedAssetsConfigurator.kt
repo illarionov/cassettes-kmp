@@ -75,13 +75,13 @@ internal open class PublishedAssetsConfigurator @Inject constructor(
         cassettes: FileCollection,
         jvmResourcesPackage: Provider<String>,
     ) {
-        val resourcesJvmDir = cassettesBuildPaths.jvmRoot
-        val jvmPackageSubdir = jvmResourcesPackage.map { it.replace(".", "/") }
+        val resourcesJvmDir: Provider<Directory> = cassettesBuildPaths.jvmRoot
+        val jvmPackageSubdir: Provider<String> = jvmResourcesPackage.map { it.replace(".", "/") }
 
         @Suppress("GENERIC_VARIABLE_WRONG_DECLARATION")
         val rewrapJvmResourcesTask = tasks.register<Sync>("rewrapCassettesToJvmResources") {
             from(cassettes)
-            into(resourcesJvmDir.map { it.dir(jvmPackageSubdir) })
+            into(resourcesJvmDir.zip<String, Directory>(jvmPackageSubdir, Directory::dir))
         }
 
         val resourcesDir = objects.fileCollection().apply {
