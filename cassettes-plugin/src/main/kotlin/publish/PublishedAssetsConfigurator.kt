@@ -38,7 +38,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
 import javax.inject.Inject
 
-private const val CASSETTES_SUBDIRECTORY = "cassettes"
+internal const val CASSETTES_SUBDIRECTORY = "cassettes"
 
 internal open class PublishedAssetsConfigurator @Inject constructor(
     layout: ProjectLayout,

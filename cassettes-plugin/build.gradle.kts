@@ -34,10 +34,15 @@ gradlePlugin {
         implementationClass = "at.released.cassettes.plugin.CassettesBasePlugin"
         displayName = "Base Cassettes Gradle Plugin"
     }
+    plugins.create("unwrap") {
+        id = "at.released.cassettes.plugin.unwrap"
+        implementationClass = "at.released.cassettes.plugin.UnwrapPlugin"
+        displayName = "Plugin that activates kotlin multiplatform resources and unpack assets for use"
+    }
     plugins.create("rewrap") {
-        id = "at.released.cassettes.rewrap"
+        id = "at.released.cassettes.plugin.rewrap"
         implementationClass = "at.released.cassettes.plugin.publish.RewrapPlugin"
-        displayName = "A plugin that converts Cassette-based assets into native resources for the target platform"
+        displayName = "A plugin that converts Cassette-based assets into native assets for the target platform"
         tags = listOf("kotlin", "multiplatform", "resources")
     }
 }

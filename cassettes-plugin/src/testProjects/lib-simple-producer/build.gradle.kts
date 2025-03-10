@@ -1,7 +1,8 @@
 plugins {
     `maven-publish`
     id("org.jetbrains.kotlin.multiplatform")
-    id("at.released.cassettes.rewrap")
+    id("at.released.cassettes.plugin.rewrap")
+    id("at.released.cassettes.plugin.unwrap")
 }
 
 kotlin {
