@@ -5,3 +5,8 @@
     --default-monospace-font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
     --default-font-size: 15px;
 }
+
+h2, h3, h4 {
+   margin-block-start: 1.5rem;
+   margin-block-end: 1rem;
+}
