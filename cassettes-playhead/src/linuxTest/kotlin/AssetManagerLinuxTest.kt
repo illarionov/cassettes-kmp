@@ -27,7 +27,7 @@ class AssetManagerLinuxTest {
 
     @Test
     fun linuxWasmSourceReader_shouldReadPath() {
-        val url = AssetUrl("wsohResources/resource.txt")
+        val url = AssetUrl("cassettes/resource.txt")
         val path = Path(tempFolder.append("testApp/${url.url}").asString())
         SystemFileSystem.run {
             createDirectories(path.parent!!)
