@@ -1,28 +1,16 @@
 # Cassettes KMP
 
-[![Maven Central](https://img.shields.io/maven-central/v/at.released.cassettes/cassettes-sync)][Maven Central]
+[![Maven Central](https://img.shields.io/maven-central/v/at.released.cassettes/cassettes-plugin)][Maven Central]
 [![build](https://github.com/illarionov/cassettes-kmp/actions/workflows/Build.yml/badge.svg)](https://github.com/illarionov/cassettes-kmp/actions/workflows/Build.yml)
 [![kdoc](https://img.shields.io/badge/API_reference-KDoc-blue)](https://cassettes.released.at)
 
 Assets for Kotlin Multiplatform projects.
 
-Initial experimental version for several projects. Will be heavily changed modified if development continues.
+Initial experimental version. Will be heavily changed modified if development continues.
 
-## Installation
+For more information, check the project API reference: [cassettes.released.at](https://cassettes.released.at)
 
-The latest release is available on [Maven Central]. Add the dependency:
-
-```kotlin
-dependencies {
-    implementation("at.released.cassettes:cassettes-playhead:0.1")
-}
-```
-
-## Features
-
-
-## Usage
-
+[Maven Central]: https://central.sonatype.com/artifact/at.released.cassettes/cassettes-plugin
 
 ## License
 
