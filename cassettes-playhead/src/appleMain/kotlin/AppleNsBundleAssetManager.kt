@@ -22,7 +22,7 @@ import platform.Foundation.NSBundle
 public class AppleNsBundleAssetManager(
     private val bundle: NSBundle = NSBundle.mainBundle,
     private val fileSystem: FileSystem = SystemFileSystem,
-    private val wshohResourcesRoot: String = "wsoh-resources",
+    private val cassettesRoot: String = "cassettes",
 ) : AssetManager {
     override fun getStorageCandidates(url: AssetUrl): List<AssetStorage> = listOf(NsBundleBinarySource(url))
 
@@ -36,7 +36,7 @@ public class AppleNsBundleAssetManager(
             val absolutePath = bundle.pathForResource(
                 name = fullPath.substringBeforeLast("."),
                 ofType = fullPath.substringAfterLast("."),
-                inDirectory = wshohResourcesRoot,
+                inDirectory = cassettesRoot,
             ) ?: throw FileNotFoundException("File not found in bundle: $fullPath. Bundle base: ${bundle.bundlePath}")
             return fileSystem.source(Path(absolutePath))
         }
