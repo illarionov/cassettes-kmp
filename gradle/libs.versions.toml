@@ -16,7 +16,7 @@ kotlin = "2.1.21"
 kotlinx-binary-compatibility-validator = "0.17.0"
 kotlinx-io ="0.7.0"
 mockk = "1.14.2"
-spotless = "7.0.3"
+spotless = "7.0.4"
 nodejs = "23.8.0"
 tempfolder = "0.1"
 
