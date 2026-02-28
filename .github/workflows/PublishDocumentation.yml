@@ -57,7 +57,7 @@ jobs:
         run: ./gradlew doc:aggregate-documentation:buildWebsite --stacktrace
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: 'doc/aggregate-documentation/build/outputs/website/'
 
