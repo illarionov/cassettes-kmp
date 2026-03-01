@@ -83,7 +83,7 @@ jobs:
           | xargs -0 tar -c -I 'zstd -19 -T0' -f test-reports-linux.tar.zst
 
       - name: Upload test reports
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: test-reports
@@ -148,7 +148,7 @@ jobs:
           | xargs -0 tar -c --zstd --options zstd:compression-level=20 -f test-reports-macos.tar.zst
 
       - name: Upload test reports
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: test-reports-macos
@@ -212,7 +212,7 @@ jobs:
           @(Get-ChildItem -Path . -Include "reports" -Directory -Name -Recurse)
 
       - name: Upload test reports
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: test-reports-windows
@@ -270,7 +270,7 @@ jobs:
 
       - name: Upload lint outputs
         if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: lint-outputs
           path: lint-outputs.tar.zst
